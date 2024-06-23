@@ -1,0 +1,25 @@
+### GET test to get all persons
+GET http://localhost:3001/api/persons
+
+
+### DELETE test to dekele a person 1
+DELETE http://localhost:3001/api/persons/1
+
+### POST test to add a new person
+POST http://localhost:3001/api/persons HTTP/1.1
+Content-Type: application/json
+
+{
+  "name": "Jordi Hdez2",
+  "number": "123-456-789"
+}
+
+### POST test to add a new person wuth a name that already exists and return error
+POST http://localhost:3001/api/persons HTTP/1.1
+Content-Type: application/json
+
+{
+  "name": "Mary Poppendieck",
+  "number": "123-456-789"
+}
+
