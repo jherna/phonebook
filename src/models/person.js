@@ -1,10 +1,10 @@
 const mongoose = require('mongoose')
+require('dotenv').config()
 
 mongoose.set('strictQuery', false)
 
-const password = "Jordi.mongo22"
-//const url = process.env.MONGODB_URI
-const url = `mongodb+srv://jherna:${password}@cluster0.divhm.mongodb.net/phonebook?retryWrites=true&w=majority`
+const url = process.env.MONGODB_URI
+//const url = `mongodb+srv://jherna:${password}@cluster0.divhm.mongodb.net/phonebook?retryWrites=true&w=majority`
 
 
 console.log('connecting to', url)
