@@ -42,7 +42,6 @@ app.get('/api/persons', (request, response) => {
     Person.find({}).then(persons => {
         response.json(persons)
     })
-    //response.json(persons)
 })
 
 //response from phonebook info
@@ -53,16 +52,14 @@ app.get('/info', (request, response) => {
 
 //get a single person by id
 app.get('/api/persons/:id', (request, response) => {
-    Person.findById(request.params.id).then(person => {
-        response.json(person)
+    Person.findById(request.params.id)
+        .then(person => {
+            if(person) response.json(person)
+            else response.status(404).end()
+    }).catch(error => {
+        console.log(error)
+        response.status(400).send({error: 'malformatted id'})
     })
-    /*const id = Number(request.params.id)
-    const person = persons.find(person => person.id === id)
-    if (person) {
-        response.json(person)
-    } else {
-        response.status(404).end()
-    }*/
 })
 
 //delete a single note by id
@@ -89,25 +86,13 @@ app.post('/api/persons', (request, response) => {
     person.save().then(savedPerson => {
         response.json(savedPerson)
     })
-    /*if (!body.name || !body['number']) {
-        return response.status(400).json({
-            error: 'name or number missing'
-        })
-    }
+    /*
     if (persons.find(person => person.name === body.name)) {
         return response.status(400).json({
             error: 'name must be unique'
         })
     }
-
-
-    const person = {
-        name: body.name,
-        number: body['number'],
-        id: generateId(),
-    }
-    persons = persons.concat(person)
-    response.json(person)*/
+    */
 })
 
 const PORT = process.env.PORT
